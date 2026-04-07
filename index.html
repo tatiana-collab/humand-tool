@@ -14,6 +14,7 @@
     --text-body: #374151; --text-muted: #6b7a99; --border: #e2e8f0;
     --success: #16a34a; --success-bg: #f0fdf4;
     --danger: #dc2626; --danger-bg: #fef2f2;
+    --purple: #7c3aed; --purple-bg: #f5f3ff; --purple-border: #ddd6fe;
     --shadow: 0 1px 3px rgba(0,0,0,.08);
     --radius: 10px;
   }
@@ -26,12 +27,23 @@
   .topbar-right { margin-left: auto; }
   .privacy-pill { display: flex; align-items: center; gap: 5px; background: var(--success-bg); border: 1px solid #bbf7d0; border-radius: 20px; padding: 4px 10px; font-size: 11px; font-weight: 500; color: var(--success); }
 
-  .content { max-width: 820px; margin: 0 auto; padding: 32px 24px 60px; }
+  .content { max-width: 960px; margin: 0 auto; padding: 32px 24px 60px; }
   .page-title { font-size: 20px; font-weight: 700; color: var(--blue-dark); margin-bottom: 3px; }
   .page-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 22px; }
 
-  .rule-banner { background: var(--blue-light); border: 1px solid var(--blue-border); border-left: 4px solid var(--blue-mid); border-radius: var(--radius); padding: 11px 15px; display: flex; align-items: center; gap: 9px; margin-bottom: 20px; font-size: 13px; color: var(--blue-dark); }
+  .rule-banner { background: var(--blue-light); border: 1px solid var(--blue-border); border-left: 4px solid var(--blue-mid); border-radius: var(--radius); padding: 12px 16px; display: flex; align-items: flex-start; gap: 9px; margin-bottom: 20px; font-size: 13px; color: var(--blue-dark); line-height: 1.7; }
   .rule-banner strong { font-weight: 600; }
+  .cols-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+  @media (max-width: 600px) { .cols-grid { grid-template-columns: 1fr; } }
+  .col-card { border-radius: 8px; padding: 11px 14px; border: 1px solid; }
+  .col-card.blue { background: var(--blue-light); border-color: var(--blue-border); }
+  .col-card.green { background: var(--success-bg); border-color: #bbf7d0; }
+  .col-card.purple { background: var(--purple-bg); border-color: var(--purple-border); }
+  .col-card-title { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
+  .col-card.blue .col-card-title { color: var(--blue-dark); }
+  .col-card.green .col-card-title { color: #14532d; }
+  .col-card.purple .col-card-title { color: #4c1d95; }
+  .col-card-desc { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
 
   .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; }
   .card-hd { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
@@ -55,18 +67,25 @@
   .preview-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
   .meta-chip { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px; font-weight: 500; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
   .meta-chip.green { background: var(--success-bg); border-color: #bbf7d0; color: var(--success); }
+  .meta-chip.blue { background: var(--blue-light); border-color: var(--blue-border); color: var(--blue-dark); }
+  .meta-chip.purple { background: var(--purple-bg); border-color: var(--purple-border); color: var(--purple); }
 
   .tbl-toolbar { background: #f8fafc; border-bottom: 1px solid var(--border); padding: 9px 14px; font-size: 12px; font-weight: 500; color: var(--text-muted); }
   .tbl-wrap { overflow: auto; max-height: 380px; }
   table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
   thead th { background: #f8fafc; color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; padding: 9px 13px; text-align: left; border-bottom: 1px solid var(--border); position: sticky; top: 0; white-space: nowrap; }
-  thead th.th-new { color: var(--blue-mid); background: var(--blue-light); }
+  thead th.th-blue  { color: var(--blue-mid); background: var(--blue-light); }
+  thead th.th-green { color: var(--success);  background: var(--success-bg); }
+  thead th.th-purple { color: var(--purple);  background: var(--purple-bg); }
   tbody tr { border-bottom: 1px solid #f1f5f9; transition: background .08s; }
   tbody tr:hover { background: var(--blue-light); }
   tbody tr:last-child { border-bottom: none; }
   tbody td { padding: 9px 13px; white-space: nowrap; color: var(--text-body); font-variant-numeric: tabular-nums; }
-  td.td-new { background: var(--blue-light); color: var(--blue-dark); font-weight: 600; }
-  td.td-muted { color: var(--text-muted); }
+  td.td-blue   { background: var(--blue-light); color: var(--blue-dark); font-weight: 600; }
+  td.td-green  { background: var(--success-bg); color: #14532d; font-weight: 600; }
+  td.td-red    { background: var(--danger-bg);  color: var(--danger);  font-weight: 600; }
+  td.td-purple { background: var(--purple-bg);  color: #4c1d95; font-weight: 600; }
+  td.td-muted  { color: var(--text-muted); }
   .collab-cell { display: flex; align-items: center; gap: 7px; }
   .avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--blue-light); color: var(--blue-dark); font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid var(--blue-border); }
 
@@ -93,11 +112,22 @@
 
 <div class="content">
   <div class="page-title">Agregar descanso comida</div>
-  <div class="page-sub">Agrega la columna de 20 min de descanso pagado al reporte exportado desde Humand</div>
+  <div class="page-sub">Agrega el descanso pagado al reporte exportado desde Humand</div>
 
-  <div class="rule-banner">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-    Se agrega la columna <strong>"Descanso comida"</strong> con <strong>0:20 hs</strong> para cada colaborador
+  <!-- Cards explicativas de columnas -->
+  <div class="cols-grid">
+    <div class="col-card blue">
+      <div class="col-card-title">Descanso comida</div>
+      <div class="col-card-desc">0:20 hs fijos para cada colaborador</div>
+    </div>
+    <div class="col-card green">
+      <div class="col-card-title">Balance corregido</div>
+      <div class="col-card-desc">Balance original ajustado sumando los 20 min</div>
+    </div>
+    <div class="col-card purple">
+      <div class="col-card-title">Horas trabajadas + descanso</div>
+      <div class="col-card-desc">Horas trabajadas + 20 min de descanso pagado</div>
+    </div>
   </div>
 
   <div class="card">
@@ -133,7 +163,7 @@
         </div>
         <div>
           <h2>Vista previa</h2>
-          <p>La columna <strong style="color:var(--blue-mid)">Descanso comida</strong> fue agregada al final del reporte</p>
+          <p>3 columnas nuevas agregadas al final del reporte</p>
         </div>
       </div>
       <div class="card-body" style="padding:0">
@@ -145,26 +175,29 @@
     </div>
     <button class="btn-dl" onclick="downloadFile()">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Descargar reporte con descanso comida
+      Descargar reporte corregido
     </button>
     <span class="reset-link" onclick="resetApp()">← Cargar otro archivo</span>
   </div>
 </div>
 
 <script>
-let storedWb = null, storedSheetName = null, storedHeaders = [], storedDataRows = [], originalFileName = '';
+let storedWb = null, storedSheetName = null, storedHeaders = [], storedRows = [];
+let balanceColIdx = -1, trabajadasColIdx = -1;
+let originalFileName = '';
 
-// ── Helpers de formato ─────────────────────────────────────────────────────
-// SheetJS lee timedelta/time como fracción de día (número decimal 0..1 o >1)
-// Ejemplo: 7h = 7/24 = 0.291666...
-// También puede venir como string "7:00:00" desde celdas de texto
-function isTimeSerial(v) {
-  // Número decimal que representa fracción de día (SheetJS sin cellDates)
-  return typeof v === 'number' && v >= 0 && !Number.isInteger(v);
+const TWENTY_MIN = 20 / (24 * 60);
+
+function findCol(headers, patterns) {
+  for (let i = 0; i < headers.length; i++) {
+    for (const p of patterns) {
+      if (p.test(headers[i])) return i;
+    }
+  }
+  return -1;
 }
 
 function serialToHHMM(serial) {
-  // Convierte fracción de día a "H:MM" con signo negativo si corresponde
   const neg = serial < 0;
   const abs = Math.abs(serial);
   const totalMin = Math.round(abs * 24 * 60);
@@ -173,31 +206,30 @@ function serialToHHMM(serial) {
   return (neg ? '-' : '') + h + ':' + String(m).padStart(2, '0');
 }
 
-function formatCellForDisplay(val, numFmt) {
-  if (val === null || val === undefined || val === '') return '';
-  // Si SheetJS devuelve número y el formato es de tiempo → convertir
-  if (typeof val === 'number') {
-    const fmt = (numFmt || '').toLowerCase();
-    if (fmt.includes(':mm') || fmt.includes('[h]') || fmt === 'h:mm' || fmt === 'hh:mm') {
-      return serialToHHMM(val);
-    }
-    // Entero puro → mostrar tal cual
-    return String(val);
+function formatCell(cell) {
+  if (!cell || cell.v === '' || cell.v === null || cell.v === undefined) return '';
+  if (typeof cell.v === 'number') {
+    const fmt = (cell.z || '').toLowerCase();
+    if (fmt.includes(':mm') || fmt.includes('[h]')) return serialToHHMM(cell.v);
+    return String(cell.v);
   }
-  return String(val);
+  return String(cell.v);
 }
 
-// ── Drag & drop ────────────────────────────────────────────────────────────
+function isDeficitCell(cell) {
+  return cell && cell.z && (cell.z.startsWith('- ') || cell.z.startsWith('-['));
+}
+
 const dropzone = document.getElementById('dropzone');
 dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
 dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
-dropzone.addEventListener('drop', e => { e.preventDefault(); dropzone.classList.remove('dragover'); const f = e.dataTransfer.files[0]; if (f) handleFile(f); });
-document.getElementById('fileInput').addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+dropzone.addEventListener('drop', e => { e.preventDefault(); dropzone.classList.remove('dragover'); const f = e.dataTransfer.files[0]; if(f) handleFile(f); });
+document.getElementById('fileInput').addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); });
 
-function setStatus(msg, color) { const el = document.getElementById('status'); el.textContent = msg; el.style.color = color || 'var(--text-muted)'; }
+function setStatus(msg, color) { const el = document.getElementById('status'); el.textContent = msg; el.style.color = color||'var(--text-muted)'; }
 function showError(msg) { const b = document.getElementById('errorBox'); b.textContent = '⚠ ' + msg; b.classList.add('visible'); }
 function hideError() { document.getElementById('errorBox').classList.remove('visible'); }
-function initials(name) { const p = String(name).trim().split(/\s+/); return ((p[0]||'')[0]||'').toUpperCase() + ((p[1]||'')[0]||'').toUpperCase(); }
+function initials(n) { const p = String(n).trim().split(/\s+/); return ((p[0]||'')[0]||'').toUpperCase()+((p[1]||'')[0]||'').toUpperCase(); }
 
 function handleFile(file) {
   hideError();
@@ -206,38 +238,36 @@ function handleFile(file) {
   const reader = new FileReader();
   reader.onload = function(e) {
     try {
-      // cellNF: true  → preserva número formato original
-      // cellText: false → queremos el valor numérico, no el texto formateado por SheetJS
       const wb = XLSX.read(e.target.result, { type: 'array', cellNF: true, cellText: false });
       storedWb = wb;
       storedSheetName = wb.SheetNames[0];
       const ws = wb.Sheets[storedSheetName];
-
-      // Leemos como array de arrays con objetos de celda para preservar formatos
       const range = XLSX.utils.decode_range(ws['!ref']);
 
-      // Fila 0 = título, fila 1 = headers, fila 2+ = datos
       const allRows = [];
       for (let r = range.s.r; r <= range.e.r; r++) {
         const row = [];
         for (let c = range.s.c; c <= range.e.c; c++) {
-          const cellAddr = XLSX.utils.encode_cell({r, c});
-          const cell = ws[cellAddr];
-          row.push(cell ? { v: cell.v, t: cell.t, z: cell.z || '', w: cell.w || '' } : { v: '', t: 's', z: '', w: '' });
+          const addr = XLSX.utils.encode_cell({r, c});
+          const cell = ws[addr];
+          row.push(cell ? {v:cell.v, t:cell.t, z:cell.z||'', w:cell.w||''} : {v:'', t:'s', z:'', w:''});
         }
         allRows.push(row);
       }
 
       if (allRows.length < 2) { showError('El archivo parece estar vacío.'); return; }
 
-      storedHeaders = allRows[1].map((c, i) => c.v !== '' && c.v !== null ? String(c.v) : 'Col ' + (i + 1));
-      storedDataRows = allRows.slice(2);
+      storedHeaders = allRows[1].map((c,i) => c.v !== '' && c.v !== null ? String(c.v) : 'Col '+(i+1));
+      storedRows = allRows.slice(2);
+
+      balanceColIdx   = findCol(storedHeaders, [/balance/i]);
+      trabajadasColIdx = findCol(storedHeaders, [/horas\s*trabajadas/i, /trabajadas/i]);
 
       renderPreview();
-      setStatus('✓ ' + file.name + ' · ' + storedDataRows.length + ' colaboradores', 'var(--success)');
+      setStatus('✓ ' + file.name + ' · ' + storedRows.length + ' colaboradores', 'var(--success)');
     } catch(err) {
       console.error(err);
-      showError('No se pudo leer el archivo. Verificá que sea un .xlsx de Humand.');
+      showError('No se pudo leer el archivo.');
       setStatus('Error al leer el archivo.', 'var(--danger)');
     }
   };
@@ -246,87 +276,136 @@ function handleFile(file) {
 
 function renderPreview() {
   document.getElementById('previewMeta').innerHTML = `
-    <div class="meta-chip">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-      ${storedDataRows.length} colaboradores
-    </div>
-    <div class="meta-chip green">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-      Columna "Descanso comida" agregada · 0:20
-    </div>
+    <div class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${storedRows.length} colaboradores</div>
+    <div class="meta-chip blue">+ Descanso comida · 0:20</div>
+    <div class="meta-chip green">+ Balance corregido</div>
+    <div class="meta-chip purple">+ Hs trabajadas + descanso</div>
   `;
+  document.getElementById('tblToolbar').textContent = 'Colaboradores ' + storedRows.length + '/' + storedRows.length;
 
-  document.getElementById('tblToolbar').textContent = 'Colaboradores ' + storedDataRows.length + '/' + storedDataRows.length;
-
-  // Headers
   let headHtml = storedHeaders.map(h => `<th>${h}</th>`).join('');
-  headHtml += `<th class="th-new">Descanso comida</th>`;
+  headHtml += `<th class="th-blue">Descanso comida</th>`;
+  headHtml += `<th class="th-green">Balance corregido</th>`;
+  headHtml += `<th class="th-purple">Hs trabajadas + descanso</th>`;
   document.getElementById('tHead').innerHTML = `<tr>${headHtml}</tr>`;
 
-  // Body
-  const count = Math.min(storedDataRows.length, 80);
+  const count = Math.min(storedRows.length, 80);
   let body = '';
   for (let i = 0; i < count; i++) {
-    const row = storedDataRows[i];
+    const row = storedRows[i];
     let cells = row.map((cell, ci) => {
-      const display = formatCellForDisplay(cell.v, cell.z);
-      if (ci === 0) {
-        return `<td><div class="collab-cell"><div class="avatar">${initials(display)}</div>${display}</div></td>`;
-      }
-      return `<td class="${display === '' ? 'td-muted' : ''}">${display}</td>`;
+      const display = formatCell(cell);
+      if (ci === 0) return `<td><div class="collab-cell"><div class="avatar">${initials(display)}</div>${display}</div></td>`;
+      return `<td class="${display===''?'td-muted':''}">${display}</td>`;
     }).join('');
-    cells += `<td class="td-new">0:20</td>`;
+
+    // Col 1: Descanso comida
+    cells += `<td class="td-blue">0:20</td>`;
+
+    // Col 2: Balance corregido
+    let corrDisplay = '—', corrClass = 'td-muted';
+    if (balanceColIdx >= 0) {
+      const balCell = row[balanceColIdx];
+      if (balCell && typeof balCell.v === 'number') {
+        const isDeficit = isDeficitCell(balCell);
+        const corrVal = isDeficit ? balCell.v - TWENTY_MIN : balCell.v + TWENTY_MIN;
+        if (isDeficit) {
+          corrDisplay = corrVal > 0 ? '-' + serialToHHMM(corrVal) : serialToHHMM(Math.abs(corrVal));
+          corrClass = corrVal > 0 ? 'td-red' : 'td-green';
+        } else {
+          corrDisplay = serialToHHMM(corrVal);
+          corrClass = 'td-green';
+        }
+      }
+    }
+    cells += `<td class="${corrClass}">${corrDisplay}</td>`;
+
+    // Col 3: Horas trabajadas + descanso
+    let hsDisplay = '—', hsClass = 'td-muted';
+    if (trabajadasColIdx >= 0) {
+      const trabCell = row[trabajadasColIdx];
+      if (trabCell && typeof trabCell.v === 'number') {
+        const total = trabCell.v + TWENTY_MIN;
+        hsDisplay = serialToHHMM(total);
+        hsClass = 'td-purple';
+      }
+    }
+    cells += `<td class="${hsClass}">${hsDisplay}</td>`;
+
     body += `<tr>${cells}</tr>`;
   }
-  if (storedDataRows.length > 80) {
-    body += `<tr><td colspan="${storedHeaders.length + 1}" style="color:var(--text-muted);text-align:center;padding:10px;font-size:12px;">... y ${storedDataRows.length - 80} filas más en el archivo descargado</td></tr>`;
+  if (storedRows.length > 80) {
+    body += `<tr><td colspan="${storedHeaders.length+3}" style="color:var(--text-muted);text-align:center;padding:10px;font-size:12px;">... y ${storedRows.length-80} filas más en el archivo descargado</td></tr>`;
   }
   document.getElementById('tBody').innerHTML = body;
   document.getElementById('previewSection').classList.remove('hidden');
-  document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('previewSection').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function downloadFile() {
-  // Trabajamos directamente sobre la hoja original para preservar TODOS los formatos
   const ws = storedWb.Sheets[storedSheetName];
   const range = XLSX.utils.decode_range(ws['!ref']);
 
-  // Columna nueva = siguiente a la última
-  const newColIdx = range.e.c + 1;
-  const newColLetter = XLSX.utils.encode_col(newColIdx);
+  const colDescanso  = range.e.c + 1;
+  const colBalance   = range.e.c + 2;
+  const colTrabajadas = range.e.c + 3;
+  const lD = XLSX.utils.encode_col(colDescanso);
+  const lB = XLSX.utils.encode_col(colBalance);
+  const lT = XLSX.utils.encode_col(colTrabajadas);
 
-  // Header en fila 1 (índice 1 = row 2 en Excel)
-  const headerCell = newColLetter + '2';
-  ws[headerCell] = { v: 'Descanso comida', t: 's' };
+  // Headers (fila 2 = índice 1)
+  ws[lD + '2'] = {v: 'Descanso comida', t: 's'};
+  ws[lB + '2'] = {v: 'Balance corregido', t: 's'};
+  ws[lT + '2'] = {v: 'Hs trabajadas + descanso', t: 's'};
 
-  // Datos: fila 2 en adelante (índice 2 = row 3 en Excel)
-  // 20 minutos = 20/(24*60) = 0.013888... como serial de Excel
-  const TWENTY_MIN_SERIAL = 20 / (24 * 60);
   for (let r = 2; r <= range.e.r; r++) {
-    const cellAddr = newColLetter + (r + 1);
-    ws[cellAddr] = { v: TWENTY_MIN_SERIAL, t: 'n', z: '[h]:mm' };
+    const excelRow = r + 1;
+
+    // Descanso comida
+    ws[lD + excelRow] = {v: TWENTY_MIN, t: 'n', z: '[h]:mm'};
+
+    // Balance corregido
+    if (balanceColIdx >= 0) {
+      const balAddr = XLSX.utils.encode_cell({r, c: balanceColIdx});
+      const balCell = ws[balAddr];
+      if (balCell && typeof balCell.v === 'number') {
+        const isDeficit = isDeficitCell(balCell);
+        const corrVal = isDeficit ? balCell.v - TWENTY_MIN : balCell.v + TWENTY_MIN;
+        const newFmt = (isDeficit && corrVal > 0) ? '- [h]:mm' : '[h]:mm';
+        ws[lB + excelRow] = {v: Math.abs(corrVal), t: 'n', z: newFmt};
+      } else { ws[lB + excelRow] = {v:'', t:'s'}; }
+    }
+
+    // Horas trabajadas + descanso
+    if (trabajadasColIdx >= 0) {
+      const trabAddr = XLSX.utils.encode_cell({r, c: trabajadasColIdx});
+      const trabCell = ws[trabAddr];
+      if (trabCell && typeof trabCell.v === 'number') {
+        ws[lT + excelRow] = {v: trabCell.v + TWENTY_MIN, t: 'n', z: '[h]:mm'};
+      } else { ws[lT + excelRow] = {v:'', t:'s'}; }
+    }
   }
 
-  // Actualizar el rango de la hoja
-  range.e.c = newColIdx;
+  range.e.c = colTrabajadas;
   ws['!ref'] = XLSX.utils.encode_range(range);
 
-  // Ancho de columna nueva
   const cols = ws['!cols'] ? [...ws['!cols']] : [];
-  while (cols.length <= newColIdx) cols.push({ wch: 12 });
-  cols[newColIdx] = { wch: 18 };
+  while (cols.length <= colTrabajadas) cols.push({wch: 12});
+  cols[colDescanso]   = {wch: 18};
+  cols[colBalance]    = {wch: 20};
+  cols[colTrabajadas] = {wch: 26};
   ws['!cols'] = cols;
 
-  XLSX.writeFile(storedWb, originalFileName + '_descanso_comida.xlsx');
+  XLSX.writeFile(storedWb, originalFileName + '_corregido.xlsx');
 }
 
 function resetApp() {
-  storedWb = null; storedDataRows = []; storedHeaders = [];
+  storedWb = null; storedRows = []; storedHeaders = [];
   document.getElementById('previewSection').classList.add('hidden');
   document.getElementById('fileInput').value = '';
   hideError();
   setStatus('Esperando archivo...');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 </script>
 </body>
